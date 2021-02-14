@@ -98,7 +98,7 @@ public:
 
             m_fontHeader->RenderText(m_renderer, 0, 16 * 19, "All Characters in VP16Font.bmp");
             m_fontNormal->RenderText(m_renderer, 0, 16 * 20,
-                                         " @\"#$%&'()*+,-./\n"
+                                         " !\"#$%&'()*+,-./\n"
                                          "0123456789:;<=>?\n"
                                          "@ABCDEFGHIJKLMNO\n"
                                          "PQRSTUVWXYZ[\\]^_\n"
