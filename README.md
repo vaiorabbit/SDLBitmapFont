@@ -7,7 +7,7 @@ Demonstrates bitmap (sprite) font rendering with SDL.
 *   Created : 2021-02-0h14
 *   Last modified : 2021-02-14
 
-<img src="https://raw.githubusercontent.com/vaiorabbit/SDLBitmapFont/master/doc/SDLBitmapFontSample.png" width="720">
+<img src="https://raw.githubusercontent.com/vaiorabbit/SDLBitmapFont/main/doc/SDLBitmapFontSample.png" width="720">
 
 ## License ##
 
