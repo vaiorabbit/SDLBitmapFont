@@ -1,6 +1,7 @@
 2021-02-15  vaiorabbit  <http://twitter.com/vaiorabbit>
 
-	* Fixed wrong strings in sample.cpp
+	* sample/sample.cpp: Fixed wrong strings in sample.cpp
+	* font/VP16Font: Fixed wrong single-quote typeface
 
 2021-02-14  vaiorabbit  <http://twitter.com/vaiorabbit>
 
