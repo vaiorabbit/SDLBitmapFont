@@ -17,9 +17,9 @@ public:
 
     int32_t Initialize()
     {
-        uint32_t init_flag = SDL_INIT_TIMER | SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER;
+        uint32_t initFlag = SDL_INIT_VIDEO;
 
-        if (SDL_Init(init_flag) != 0) {
+        if (SDL_Init(initFlag) != 0) {
             SDL_Log("Unable to initialize SDL: %s", SDL_GetError());
             return 1;
         }
@@ -72,12 +72,12 @@ public:
                 }
             }
 
-            SDL_Color color_clear = {0x00, 0x20, 0x60, 0x00};
-            SDL_SetRenderDrawColor(m_renderer, color_clear.r, color_clear.g, color_clear.b, color_clear.a);
+            SDL_Color colorClear = {0x00, 0x20, 0x60, 0x00};
+            SDL_SetRenderDrawColor(m_renderer, colorClear.r, colorClear.g, colorClear.b, colorClear.a);
             SDL_RenderClear(m_renderer);
 
             m_fontHeader->RenderText(m_renderer, 0, 16 * 0, "         1UP      HI-SCORE      2UP");
-            m_fontNormal->RenderText(m_renderer, 0, 16 * 1,    "        23450    1234567890    12340");
+            m_fontNormal->RenderText(m_renderer, 0, 16 * 1, "        23450    1234567890    12340");
 
             m_fontHeader->RenderText(m_renderer, 0, 16 * 3, "Alphabets");
             m_fontNormal->RenderText(m_renderer, 0, 16 * 4, "A QUICK BROWN FOX JUMPS OVER THE LAZY DOG.");
