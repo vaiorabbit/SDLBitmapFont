@@ -17,6 +17,7 @@ public:
 
     int32_t Initialize()
     {
+        // Initialize SDL
         uint32_t initFlag = SDL_INIT_VIDEO;
 
         if (SDL_Init(initFlag) != 0) {
@@ -29,7 +30,7 @@ public:
 
         // Font
         const SDL_Color colorWhite = {255, 255, 255, 255};
-        const SDL_Color colorRed = {255 , 0, 0, 255};
+        const SDL_Color colorRed = {255, 0, 0, 255};
 
         m_fontNormal = new SDLBitmapFont();
         m_fontHeader = new SDLBitmapFont();
@@ -72,45 +73,51 @@ public:
                 }
             }
 
-            SDL_Color colorClear = {0x00, 0x20, 0x60, 0x00};
+            const SDL_Color colorClear = {0x00, 0x20, 0x60, 0x00};
             SDL_SetRenderDrawColor(m_renderer, colorClear.r, colorClear.g, colorClear.b, colorClear.a);
             SDL_RenderClear(m_renderer);
 
-            m_fontHeader->RenderText(m_renderer, 0, 16 * 0, "         1UP      HI-SCORE      2UP");
-            m_fontNormal->RenderText(m_renderer, 0, 16 * 1, "        23450    1234567890    12340");
+            const int32_t FW = 16; // Font width
+            m_fontHeader->RenderText(m_renderer, 0, FW * 0, "         1UP      HI-SCORE      2UP");
+            m_fontNormal->RenderText(m_renderer, 0, FW * 1, "        23450    1234567890    12340");
 
-            m_fontHeader->RenderText(m_renderer, 0, 16 * 3, "Alphabets");
-            m_fontNormal->RenderText(m_renderer, 0, 16 * 4, "A QUICK BROWN FOX JUMPS OVER THE LAZY DOG.");
-            m_fontNormal->RenderText(m_renderer, 0, 16 * 5, "a quick brown fox jumps over the lazy dog.");
+            m_fontHeader->RenderText(m_renderer, 0, FW * 3, "Alphabets");
+            m_fontNormal->RenderText(m_renderer, 0, FW * 4, "A QUICK BROWN FOX JUMPS OVER THE LAZY DOG.");
+            m_fontNormal->RenderText(m_renderer, 0, FW * 5, "a quick brown fox jumps over the lazy dog.");
 
-            m_fontHeader->RenderText(m_renderer, 0, 16 * 7, "Source Code");
-            m_fontNormal->RenderText(m_renderer, 0, 16 * 8,
-                                         "int main(int argc, char** argv)\n"
-                                         "{\n"
-                                         "    Application app(argc, argv);\n"
-                                         "    int32_t status = app.Initialize();\n"
-                                         "    if (status == 0) {\n"
-                                         "        app.Main();\n"
-                                         "        app.Finalize();\n"
-                                         "    }\n"
-                                         "    return status;\n"
-                                         "}");
+            m_fontHeader->RenderText(m_renderer, 0, FW * 7, "Source Code");
+            m_fontNormal->RenderText(m_renderer, 0, FW * 8,
+                "int main(int argc, char** argv)\n"
+                "{\n"
+                "    Application app(argc, argv);\n"
+                "    int32_t status = app.Initialize();\n"
+                "    if (status == 0) {\n"
+                "        app.Main();\n"
+                "        app.Finalize();\n"
+                "    }\n"
+                "    return status;\n"
+                "}");
 
-            m_fontHeader->RenderText(m_renderer, 0, 16 * 19, "All Characters in VP16Font.bmp");
-            m_fontNormal->RenderText(m_renderer, 0, 16 * 20,
-                                         " !\"#$%&'()*+,-./\n"
-                                         "0123456789:;<=>?\n"
-                                         "@ABCDEFGHIJKLMNO\n"
-                                         "PQRSTUVWXYZ[\\]^_\n"
-                                         "`abcdefghijklmno\n"
-                                         "pqrstuvwxyz{|}~ ");
+            m_fontHeader->RenderText(m_renderer, 0, FW * 19, "All Characters in VP16Font.bmp");
+            m_fontNormal->RenderText(m_renderer, 0, FW * 20,
+                " !\"#$%&'()*+,-./\n"
+                "0123456789:;<=>?\n"
+                "@ABCDEFGHIJKLMNO\n"
+                "PQRSTUVWXYZ[\\]^_\n"
+                "`abcdefghijklmno\n"
+                "pqrstuvwxyz{|}~ ");
 
-            m_fontHeader->RenderText(m_renderer, 0, 16 * 27, "License");
-            m_fontNormal->RenderText(m_renderer, 0, 16 * 28,
-                                         "Sample code and VP16Font are available\n"
-                                         "under the zlib/libpng license. See \n"
-                                         "  http://github.com/vaiorabbit/SDLBitmapFont\n"
-                                         "for details.");
+            m_fontHeader->RenderText(m_renderer, 0, FW * 27, "License");
+            m_fontNormal->RenderText(m_renderer, 0, FW * 28,
+                "Sample code and VP16Font are available\n"
+                "under the zlib/libpng license. See \n"
+                "  http://github.com/vaiorabbit/SDLBitmapFont\n"
+                "for details.");
+
+            const char msgExit[] = "<Press [ESC] to exit>";
+            size_t msgLength = FW * (sizeof(msgExit) / sizeof(msgExit[0]));
+            int32_t xRightAdjust = m_screenWidth - msgLength;
+            m_fontNormal->RenderText(m_renderer, xRightAdjust, FW * 32, msgExit);
 
             SDL_RenderPresent(m_renderer);
         }
@@ -119,8 +126,8 @@ public:
     }
 
 private:
-    int m_argc = 0;
-    char** m_argv = nullptr;
+    [[maybe_unused]] int m_argc = 0;
+    [[maybe_unused]] char** m_argv = nullptr;
 
     int m_screenWidth = 720;
     int m_screenHeight = 540;

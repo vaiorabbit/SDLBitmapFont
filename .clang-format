@@ -1,0 +1,33 @@
+---
+Language:        Cpp
+BasedOnStyle: WebKit
+AlignOperands:   DontAlign
+AlignTrailingComments: false
+AllowShortEnumsOnASingleLine: false
+AllowShortBlocksOnASingleLine: Never
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortLambdasOnASingleLine: Empty
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+BraceWrapping:
+  AfterClass:      true
+  AfterStruct:     true
+  AfterUnion:      true
+BreakBeforeBinaryOperators: None
+BreakBeforeBraces: Mozilla
+BreakConstructorInitializersBeforeComma: true
+BreakConstructorInitializers: BeforeColon
+ColumnLimit:     0
+Cpp11BracedListStyle: true
+IndentCaseLabels: false
+IndentWidth:     4
+KeepEmptyLinesAtTheStartOfBlocks: true
+PointerAlignment: Left
+ReflowComments:  false
+SortIncludes:    false
+SortUsingDeclarations: false
+SpaceInEmptyBlock: false
+Standard:        Latest
+TabWidth:        4
+UseTab: Never

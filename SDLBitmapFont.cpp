@@ -140,7 +140,7 @@ void SDLBitmapFont::RenderText(SDL_Renderer* renderer, int32_t x, int32_t y, con
             current_y += m_newlineHeight * scale;
             break;
         default:
-            char code = text[i];
+            int32_t code = text[i];
             SDL_Rect r = {current_x, current_y, m_charRects[code].w, m_charRects[code].h};
             r.w *= scale;
             r.h *= scale;
