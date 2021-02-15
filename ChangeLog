@@ -2,6 +2,7 @@
 
 	* sample/sample.cpp: Fixed wrong strings in sample.cpp
 	* font/VP16Font: Fixed wrong single-quote typeface
+	* font/VP16Font: Improved small letter appearance
 
 2021-02-14  vaiorabbit  <http://twitter.com/vaiorabbit>
 
