@@ -10,6 +10,7 @@ file(GLOB SDLBITMAPFONT_SAMPLE_HDRS "${CMAKE_CURRENT_LIST_DIR}/sample/*.h")
 file(GLOB SDLBITMAPFONT_SAMPLE_SRCS "${CMAKE_CURRENT_LIST_DIR}/sample/*.cpp")
 
 if (CMAKE_HOST_APPLE)
+
     add_executable(SDLBitmapFontSample
         ${SDLBITMAPFONT_HDRS} ${SDLBITMAPFONT_SAMPLE_HDRS}
         ${SDLBITMAPFONT_SRCS} ${SDLBITMAPFONT_SAMPLE_SRCS}
@@ -21,7 +22,6 @@ if (CMAKE_HOST_APPLE)
     	OUTPUT_STRIP_TRAILING_WHITESPACE)
     
     include("${sdl2_prefix}/lib/cmake/SDL2/sdl2-config.cmake")
-    # find_package(SDL2)
 
 	target_compile_options(SDLBitmapFontSample PRIVATE -Wall -Wextra -pedantic)
 
@@ -30,16 +30,13 @@ if (CMAKE_HOST_APPLE)
 
     target_link_directories(SDLBitmapFontSample PUBLIC ${SDL2_LIBDIR})
     target_link_libraries(SDLBitmapFontSample SDL2)
+
 else (CMAKE_HOST_WIN32)
+
     add_executable(SDLBitmapFontSample
         ${SDLBITMAPFONT_HDRS} ${SDLBITMAPFONT_SAMPLE_HDRS}
         ${SDLBITMAPFONT_SRCS} ${SDLBITMAPFONT_SAMPLE_SRCS}
     )
-
-    # TODO
-	# SDL2_INCLUDE_DIRS SDL2_LIBDIR, copy SDL2.dll
-	#set(SDL2_INCLUDE_DIRS, "${CMAKE_CURRENT_LIST_DIR}/third_party/SDL2/include")
-	#set(SDL2_LIBDIR, "${CMAKE_CURRENT_LIST_DIR}/third_party/SDL2/lib/x64")
 
     target_include_directories(SDLBitmapFontSample PUBLIC "${CMAKE_CURRENT_LIST_DIR}/third_party/SDL2/include")
     target_include_directories(SDLBitmapFontSample PUBLIC ${CMAKE_CURRENT_LIST_DIR})
