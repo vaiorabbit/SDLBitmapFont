@@ -1,7 +1,10 @@
-#include <SDL_rwops.h>
+﻿#include <SDL_rwops.h>
 #include <SDL_render.h>
 
 #include "SDLBitmapFont.h"
+
+#include <cmath>
+#include <cstring>
 
 SDLBitmapFont::SDLBitmapFont()
     : m_texture(nullptr)
@@ -67,7 +70,7 @@ bool SDLBitmapFont::Build(SDL_Renderer* renderer, SDL_RWops* bmp_fontsheet_file,
     int texture_pitch = 0;
     SDL_LockTexture(texture, &converted_surface->clip_rect, &texture_pixels, &texture_pitch);
 
-    memcpy(texture_pixels, converted_surface->pixels, converted_surface->pitch * converted_surface->h);
+    std::memcpy(texture_pixels, converted_surface->pixels, converted_surface->pitch * converted_surface->h);
 
     // Make background transparent
     uint32_t foreground_color = SDL_MapRGB(converted_surface->format, char_rgb.r, char_rgb.g, char_rgb.b);
@@ -133,19 +136,19 @@ void SDLBitmapFont::RenderText(SDL_Renderer* renderer, int32_t x, int32_t y, con
     for (size_t i = 0; i < length; ++i) {
         switch (text[i]) {
         case ' ':
-            current_x += m_spaceWidth * scale;
+            current_x += (int)std::round(m_spaceWidth * scale);
             break;
         case '\n':
             current_x = x;
-            current_y += m_newlineHeight * scale;
+            current_y += (int)std::round(m_newlineHeight * scale);
             break;
         default:
             int32_t code = text[i];
             SDL_Rect r = {current_x, current_y, m_charRects[code].w, m_charRects[code].h};
-            r.w *= scale;
-            r.h *= scale;
+            r.w = (int)std::round(r.w * scale);
+            r.h = (int)std::round(r.h * scale);
             SDL_RenderCopy(renderer, m_texture, &m_charRects[code], &r);
-            current_x += m_charRects[code].w * scale;
+            current_x += (int)std::round(m_charRects[code].w * scale);
             break;
         }
     }

@@ -115,7 +115,7 @@ public:
                 "for details.");
 
             const char msgExit[] = "<Press [ESC] to exit>";
-            size_t msgLength = FW * (sizeof(msgExit) / sizeof(msgExit[0]));
+            int32_t msgLength = FW * (sizeof(msgExit) / sizeof(msgExit[0]));
             int32_t xRightAdjust = m_screenWidth - msgLength;
             m_fontNormal->RenderText(m_renderer, xRightAdjust, FW * 32, msgExit);
 
