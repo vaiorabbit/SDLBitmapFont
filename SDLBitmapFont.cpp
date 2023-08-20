@@ -123,11 +123,13 @@ bool SDLBitmapFont::BuildFromFile(SDL_Renderer* renderer, const char* bmp_fontsh
     return result;
 }
 
-void SDLBitmapFont::RenderText(SDL_Renderer* renderer, int32_t x, int32_t y, const char* text, float scale)
+void SDLBitmapFont::RenderText(SDL_Renderer* renderer, int32_t x, int32_t y, const char* text, float scale, SDL_Color color)
 {
     if (!m_texture) {
         return;
     }
+
+    SDL_SetTextureColorMod(m_texture, color.r, color.g, color.b);
 
     int current_x = x;
     int current_y = y;

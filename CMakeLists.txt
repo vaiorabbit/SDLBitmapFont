@@ -16,20 +16,14 @@ if (CMAKE_HOST_APPLE)
         ${SDLBITMAPFONT_SRCS} ${SDLBITMAPFONT_SAMPLE_SRCS}
     )
 
-    execute_process(
-        COMMAND brew --prefix sdl2
-        OUTPUT_VARIABLE sdl2_prefix
-    	OUTPUT_STRIP_TRAILING_WHITESPACE)
-    
-    include("${sdl2_prefix}/lib/cmake/SDL2/sdl2-config.cmake")
-
+    find_package(SDL2 REQUIRED)
 	target_compile_options(SDLBitmapFontSample PRIVATE -Wall -Wextra -pedantic)
 
     target_include_directories(SDLBitmapFontSample PUBLIC ${SDL2_INCLUDE_DIRS})
     target_include_directories(SDLBitmapFontSample PUBLIC ${CMAKE_CURRENT_LIST_DIR})
 
     target_link_directories(SDLBitmapFontSample PUBLIC ${SDL2_LIBDIR})
-    target_link_libraries(SDLBitmapFontSample SDL2)
+    target_link_libraries(SDLBitmapFontSample SDL2::SDL2)
 
 else (CMAKE_HOST_WIN32)
 
